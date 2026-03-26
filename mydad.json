@@ -1,12 +1,16 @@
 {
-    "products": [
-        { "name": "Vintage Comic Gools", "price": "$15.00", "img": "vintage-comic-graded.png" },
-        { "name": "Superhero Statue", "price": "$15.00", "img": "batman-statue.png" },
-        { "name": "Pokémon Pokémon Card", "price": "$13.00", "img": "pokemon-card.png" },
-        { "name": "Limited Edition Pin Set", "price": "$15.00", "img": "pin-set.png" }
-    ],
-    "shows": [
-        { "date": "Oct 12", "name": "Comic-Con", "location": "Manalapan, NJ" },
-        { "date": "Nov 5", "name": "Toy Fair", "location": "Manalapan, NJ" }
-    ]
+  "categories": {
+    "comics": "Silver Age Classics & Rare Graded Issues",
+    "figures": "Mint-in-Box Action Figures & Statues",
+    "cards": "Holographic Pokémon & Vintage Trading Cards"
+  },
+  "merchandise": [
+    { "name": "Action Comics #1", "desc": "High-grade reprint of Superman's first appearance.", "img": "comic1.jpg", "type": "comic" },
+    { "name": "He-Man Figure", "desc": "1982 Original series with power sword accessory.", "img": "figure1.jpg", "type": "figure" },
+    { "name": "Charizard Holo", "desc": "Base set shadowless card in pristine condition.", "img": "card1.jpg", "type": "card" }
+  ],
+  "events": [
+    { "date": "Oct 12", "name": "Comic-Con", "details": "Find us at Booth #42 with exclusive variants." },
+    { "date": "Nov 5", "name": "Toy Fair", "details": "A massive showcase of vintage 80s action figures." }
+  ]
 }

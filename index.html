@@ -1,38 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>BumDee Comics</title>
+    <title>BumDee Comics | Home</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <img src="logo.png" alt="BumDee Comics Logo" class="logo">
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="merchandise.html">Merchandise</a>
-            <a href="events.html">Events</a>
-        </nav>
-    </header>
+
+    <nav class="side-nav">
+        <a href="index.html">Home</a>
+        <a href="merchandise.html">Merchandise</a>
+        <a href="events.html">Events</a>
+    </nav>
+
     <main id="content">
-        <section class="story-page active">
+        <header>
+            <img src="logo.png" alt="BumDee Comics Logo" class="logo">
+        </header>
+
+        <section class="story-page">
             <h1>Our Legacy</h1>
             <div class="story-content">
                 <img src="tribute-to-dad.png" alt="Tribute to Dad photo" class="tribute-photo">
-                <p>Dedicated to the passion for classic storytelling. A tribute to the man who started it all.</p>
-                <p>Tribute to Dad, win our classic storytelling.</p>
+                <div class="text-block">
+                    <p>Dedicated to the passion for classic storytelling. A tribute to the man who started it all.</p>
+                    <p>Tribute to Dad, win our classic storytelling.</p>
+                </div>
             </div>
+            
             <h2>Collectibles collage</h2>
-            <p>Dedicated to the marketplace to classic storytelling for vintage and modern rarity.</p>
+            <div class="collage-container">
+                <p>Dedicated to the marketplace to classic storytelling for vintage and modern rarity.</p>
+            </div>
         </section>
-        
-        <section id="merchandise-section" class="merchandise-page"></section>
-        <section id="events-section" class="events-page"></section>
     </main>
+
     <footer id="footer">
         <p>footer</p>
     </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
