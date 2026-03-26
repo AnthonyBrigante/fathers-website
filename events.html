@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container"><img src="logo.png"></div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="merchandise.html">Merchandise</a>
+            <a href="events.html">Events</a>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="card" style="height: 400px; margin-bottom: 20px;">
+            <p>[Google Maps Embed Area]</p>
+        </div>
+        <h2>VISIT US AT UPCOMING SHOWS</h2>
+        <div id="event-list"></div>
+    </div>
+    <script>
+        fetch('data.json').then(res => res.json()).then(data => {
+            const list = document.getElementById('event-list');
+            data.events.forEach(e => {
+                list.innerHTML += `<p><strong>${e.date}</strong>: ${e.name} - ${e.details}</p>`;
+            });
+        });
+    </script>
+</body>
+</html>
