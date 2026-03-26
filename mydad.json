@@ -1,0 +1,12 @@
+{
+    "products": [
+        { "name": "Vintage Comic Gools", "price": "$15.00", "img": "vintage-comic-graded.png" },
+        { "name": "Superhero Statue", "price": "$15.00", "img": "batman-statue.png" },
+        { "name": "Pokémon Pokémon Card", "price": "$13.00", "img": "pokemon-card.png" },
+        { "name": "Limited Edition Pin Set", "price": "$15.00", "img": "pin-set.png" }
+    ],
+    "shows": [
+        { "date": "Oct 12", "name": "Comic-Con", "location": "Manalapan, NJ" },
+        { "date": "Nov 5", "name": "Toy Fair", "location": "Manalapan, NJ" }
+    ]
+}
