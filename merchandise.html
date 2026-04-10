@@ -1,33 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bumdee Comics — Merchandise</title>
+  <link rel="stylesheet" href="shared.css">
+  <link rel="stylesheet" href="merchandise.css">
 </head>
 <body>
-    <header>
-        <h1>BUMDEE MERCHANDISE</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="merchandise.html">Merchandise</a>
-            <a href="events.html">Events</a>
-        </nav>
-    </header>
-    <div class="container">
-        <div class="grid" id="product-grid">
-            </div>
+
+  <!-- ── NAV ───────────────────────────────────────────────── -->
+  <nav class="site-nav">
+    <a href="index.html" class="nav-logo">
+      <img src="logo.png" alt="Bumdee Comics Logo" style="width:100%;height:100%;object-fit:contain;">
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="merchandise.html" class="active">Merchandise</a>
+      <a href="events.html">Events</a>
     </div>
-    <script>
-        fetch('data.json').then(res => res.json()).then(data => {
-            const grid = document.getElementById('product-grid');
-            data.merchandise.forEach(item => {
-                grid.innerHTML += `
-                    <div class="card">
-                        <img src="${item.img}" style="width:100%">
-                        <p>${item.name}</p>
-                        <p class="price">${item.price}</p>
-                    </div>`;
-            });
-        });
-    </script>
+  </nav>
+
+  <!-- ── HERO ──────────────────────────────────────────────── -->
+  <header class="merch-hero">
+    <div class="sunburst"></div>
+    <div class="merch-hero-inner">
+      <span class="pre-title">Bumdee</span>
+      <h1>Merchandise</h1>
+    </div>
+  </header>
+
+  <!-- ── SEARCH / COUNT BAR ────────────────────────────────── -->
+  <div class="merch-controls">
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="Search collectibles..."
+      autocomplete="off"
+    />
+    <span class="item-count" id="itemCount">30 items</span>
+  </div>
+
+  <!-- ── PRODUCT GRID ───────────────────────────────────────── -->
+  <div class="merch-grid-wrap">
+    <div class="product-grid" id="productGrid">
+      <!-- Cards injected by merchandise.js -->
+    </div>
+  </div>
+
+  <!-- ── LIGHTBOX ──────────────────────────────────────────── -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Product detail">
+    <div class="lightbox-inner">
+      <button class="lightbox-close" id="lbClose" aria-label="Close">✕</button>
+      <img id="lbImg" src="" alt="">
+      <div class="lightbox-info">
+        <h2 id="lbName"></h2>
+        <p id="lbNum"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FOOTER ─────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <span>Bumdee Comics</span> &nbsp;·&nbsp; All Rights Reserved &nbsp;·&nbsp; © 2024
+  </footer>
+
+  <script src="merchandise.js"></script>
 </body>
 </html>

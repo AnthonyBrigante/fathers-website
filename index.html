@@ -1,45 +1,964 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>BumDee Comics | Home</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bumdee Comics</title>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Oswald:wght@400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f5f0dc;
+    --dark: #1a1a1a;
+    --red: #cc2200;
+    --yellow: #f5c800;
+    --blue: #1a6ab5;
+    --border: #333;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    min-height: 100vh;
+  }
+
+  /* ===== LOGO ===== */
+  .logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  .logo-badge {
+    position: relative;
+    width: 110px;
+    height: 110px;
+    flex-shrink: 0;
+    mix-blend-mode: multiply;
+  }
+
+  .logo-badge svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    display: flex;
+    align-items: stretch;
+    background: var(--cream);
+    border-bottom: 3px solid var(--border);
+    padding: 12px 20px;
+    gap: 20px;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    border-left: 3px solid var(--border);
+    padding-left: 16px;
+    margin-left: 10px;
+  }
+
+  .nav-links a {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-decoration: none;
+    color: var(--dark);
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover, .nav-links a.active {
+    color: var(--red);
+    text-decoration: underline;
+  }
+
+  /* ===== PAGES ===== */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ===== HOME PAGE ===== */
+  .home-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px;
+  }
+
+  .home-hero h1 {
+    font-family: 'Bangers', cursive;
+    font-size: 52px;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+
+  .home-hero .tagline {
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 24px;
+  }
+
+  .home-body {
+    display: grid;
+    grid-template-columns: 1fr 220px;
+    gap: 30px;
+    margin-bottom: 40px;
+  }
+
+  .home-body p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: #333;
+    margin-bottom: 14px;
+  }
+
+  .tribute-card {
+    background: #ede8d0;
+    border: 3px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .tribute-card .tribute-img {
+    width: 100%;
+    height: 160px;
+    background: linear-gradient(135deg, #8a7a60 0%, #5a4a30 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tribute-card .tribute-img::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(0,0,0,0.05) 4px, rgba(0,0,0,0.05) 8px);
+  }
+
+  .tribute-card .tribute-label {
+    background: var(--dark);
+    color: var(--cream);
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    text-align: center;
+    padding: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .tribute-text {
+    padding: 12px;
+    font-size: 12px;
+    line-height: 1.6;
+    color: #444;
+    font-style: italic;
+  }
+
+  /* Person figure in tribute */
+  .figure-person {
+    width: 70px;
+    height: 130px;
+  }
+
+  /* Collectibles Section */
+  .collectibles-section {
+    margin-top: 10px;
+  }
+
+  .collectibles-section h2 {
+    font-family: 'Bangers', cursive;
+    font-size: 32px;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+
+  .collectibles-section p {
+    font-size: 13px;
+    color: #444;
+    line-height: 1.6;
+    max-width: 340px;
+    margin-bottom: 16px;
+  }
+
+  .collectibles-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 60px);
+    gap: 8px;
+  }
+
+  .collectible-thumb {
+    width: 60px;
+    height: 75px;
+    border: 2px solid var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+    background: #c8b89a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ===== SHOP PAGE ===== */
+  .shop-header {
+    background: #29a8d4;
+    padding: 30px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shop-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent 0,
+      transparent 10px,
+      rgba(255,255,255,0.05) 10px,
+      rgba(255,255,255,0.05) 20px
+    );
+  }
+
+  .shop-banner {
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+  }
+
+  .shop-banner h1 {
+    font-family: 'Bangers', cursive;
+    font-size: 68px;
+    letter-spacing: 4px;
+    color: var(--yellow);
+    -webkit-text-stroke: 3px var(--dark);
+    text-shadow: 4px 4px 0 var(--dark);
+    line-height: 0.9;
+  }
+
+  .shop-banner .sub {
+    font-family: 'Bangers', cursive;
+    font-size: 40px;
+    letter-spacing: 3px;
+    color: white;
+    -webkit-text-stroke: 2px var(--dark);
+    text-shadow: 3px 3px 0 var(--dark);
+  }
+
+  .shop-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .product-card {
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+  }
+
+  .product-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  }
+
+  .product-img {
+    width: 100%;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .product-img svg {
+    width: 80%;
+    height: 80%;
+  }
+
+  .product-info {
+    padding: 8px 10px;
+    border-top: 2px solid var(--border);
+  }
+
+  .product-info .name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+  }
+
+  .product-info .price {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--red);
+  }
+
+  /* Product color schemes */
+  .bg-tan    { background: #c8b89a; }
+  .bg-blue   { background: #4a90d9; }
+  .bg-dark   { background: #2a2a2a; }
+  .bg-red    { background: #c03020; }
+  .bg-yellow { background: #e8c040; }
+  .bg-green  { background: #3a8a4a; }
+
+  /* ===== EVENTS PAGE ===== */
+  .events-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px;
+  }
+
+  .events-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 30px;
+  }
+
+  .map-container {
+    border: 3px solid var(--border);
+    background: #d4e8c8;
+    height: 280px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+  }
+
+  .map-placeholder {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: #e8edd8;
+  }
+
+  .map-pin {
+    position: absolute;
+    top: 50%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+    color: var(--red);
+    font-size: 28px;
+  }
+
+  .events-shows h2 {
+    font-family: 'Bangers', cursive;
+    font-size: 28px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-bottom: 3px solid var(--border);
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+  }
+
+  .event-item {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 20px;
+    align-items: flex-start;
+  }
+
+  .event-icon {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    background: var(--red);
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 22px;
+  }
+
+  .event-desc {
+    font-size: 12px;
+    line-height: 1.6;
+    color: #444;
+  }
+
+  .event-date {
+    font-family: 'Oswald', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 14px;
+  }
+
+  .event-date span {
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--dark);
+    color: var(--cream);
+    text-align: center;
+    padding: 14px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 40px;
+    border-top: 4px solid var(--yellow);
+  }
+
+  /* ===== SUNBURST ===== */
+  .sunburst {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200%;
+    height: 200%;
+    opacity: 0.15;
+    background: repeating-conic-gradient(var(--yellow) 0deg 10deg, transparent 10deg 20deg);
+  }
+
+  /* ===== LIMITED BADGE ===== */
+  .badge-limited {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    background: var(--red);
+    color: white;
+    font-family: 'Bangers', cursive;
+    font-size: 9px;
+    padding: 2px 5px;
+    letter-spacing: 0.5px;
+    border: 1px solid var(--dark);
+    border-radius: 2px;
+  }
+
+  /* Divider */
+  .section-divider {
+    border: none;
+    border-top: 3px solid var(--border);
+    margin: 28px 0;
+  }
+
+  /* Map grid lines */
+  .map-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,0,0,0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,0,0,0.08) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+
+  .map-road-h {
+    position: absolute;
+    left: 0; right: 0;
+    height: 8px;
+    background: #c8c0a8;
+  }
+  .map-road-v {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 8px;
+    background: #c8c0a8;
+  }
+
+  /* Responsive tweaks */
+  @media (max-width: 700px) {
+    .product-grid { grid-template-columns: repeat(2, 1fr); }
+    .home-body { grid-template-columns: 1fr; }
+    .events-layout { grid-template-columns: 1fr; }
+    .shop-banner h1 { font-size: 44px; }
+  }
+</style>
 </head>
 <body>
 
-    <nav class="side-nav">
-        <a href="index.html">Home</a>
-        <a href="merchandise.html">Merchandise</a>
-        <a href="events.html">Events</a>
-    </nav>
+<!-- ===== NAV ===== -->
+<nav>
+  <div class="logo-wrap">
+    <div class="logo-badge">
+      <img src="logo.png" alt="Bumdee Comics Logo" style="width:100%;height:100%;object-fit:contain;">
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="#" class="active" onclick="showPage('home', this)">Home</a>
+    <a href="#" onclick="showPage('shop', this)">Merchandise</a>
+    <a href="#" onclick="showPage('events', this)">Events</a>
+  </div>
+</nav>
 
-    <main id="content">
-        <header>
-            <img src="logo.png" alt="BumDee Comics Logo" class="logo">
-        </header>
+<!-- ===== HOME PAGE ===== -->
+<div id="page-home" class="page active">
+  <div class="home-content">
 
-        <section class="story-page">
-            <h1>Our Legacy</h1>
-            <div class="story-content">
-                <img src="tribute-to-dad.png" alt="Tribute to Dad photo" class="tribute-photo">
-                <div class="text-block">
-                    <p>Dedicated to the passion for classic storytelling. A tribute to the man who started it all.</p>
-                    <p>Tribute to Dad, win our classic storytelling.</p>
-                </div>
+    <div class="home-hero">
+      <h1>Our Legacy</h1>
+      <p class="tagline">Dedicated to the passion for classic storytelling.<br>A tribute to the man who started it all.</p>
+    </div>
+
+    <div class="home-body">
+      <div>
+        <p>We are dedicated to the passion for classic storytelling. A tribute to the man who comes in with a love for vintage comics, unique collectibles, and rare finds as a tribute to the incredible man who started his favorite comics.</p>
+
+        <div style="display:flex; gap:16px; align-items:flex-start; margin-top:16px;">
+          <!-- Dad tribute card -->
+          <div class="tribute-card" style="width:160px; flex-shrink:0;">
+            <div class="tribute-img">
+              <!-- Silhouette of a man holding comics -->
+              <svg class="figure-person" viewBox="0 0 70 130" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="35" cy="18" r="14" fill="#7a6248"/>
+                <rect x="20" y="33" width="30" height="50" rx="4" fill="#5a4030"/>
+                <rect x="8" y="35" width="12" height="38" rx="4" fill="#5a4030"/>
+                <rect x="50" y="35" width="12" height="38" rx="4" fill="#5a4030"/>
+                <!-- Comics in hand -->
+                <rect x="2" y="50" width="16" height="22" rx="2" fill="#cc2200" stroke="#111" stroke-width="1"/>
+                <text x="10" y="64" font-family="Bangers" font-size="7" fill="white" text-anchor="middle">COM</text>
+                <rect x="20" y="83" width="30" height="47" rx="4" fill="#5a4030"/>
+                <ellipse cx="35" cy="82" rx="15" ry="4" fill="#4a3020"/>
+              </svg>
             </div>
-            
-            <h2>Collectibles collage</h2>
-            <div class="collage-container">
-                <p>Dedicated to the marketplace to classic storytelling for vintage and modern rarity.</p>
+            <div class="tribute-label">Tribute to Dad</div>
+          </div>
+          <div>
+            <p>A tribute to Dad — we carry on his classic storytelling. A remarkable man who shared his love of comic stories and memorable moments with his favorite comics, passing his passion down through the generations.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right column: small collectibles thumbnails -->
+      <div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px;">
+          <!-- thumb 1 -->
+          <div class="collectible-thumb">
+            <svg viewBox="0 0 60 75" xmlns="http://www.w3.org/2000/svg">
+              <rect width="60" height="75" fill="#b8a888"/>
+              <rect x="5" y="5" width="50" height="65" rx="2" fill="#e8d8b0" stroke="#888" stroke-width="1.5"/>
+              <text x="30" y="30" font-family="Bangers" font-size="10" fill="#cc2200" text-anchor="middle">ACTION</text>
+              <text x="30" y="42" font-family="Bangers" font-size="8" fill="#333" text-anchor="middle">COMICS</text>
+              <circle cx="30" cy="55" r="10" fill="#1a6ab5" stroke="#111" stroke-width="1"/>
+            </svg>
+          </div>
+          <!-- thumb 2 -->
+          <div class="collectible-thumb">
+            <svg viewBox="0 0 60 75" xmlns="http://www.w3.org/2000/svg">
+              <rect width="60" height="75" fill="#8ab8d8"/>
+              <rect x="22" y="10" width="16" height="55" rx="3" fill="#c8e0f0" stroke="#555" stroke-width="1"/>
+              <rect x="18" y="15" width="24" height="40" rx="2" fill="#2060a0" stroke="#111" stroke-width="1"/>
+              <text x="30" y="40" font-family="Bangers" font-size="18" fill="#cc2200" text-anchor="middle">S</text>
+            </svg>
+          </div>
+          <!-- thumb 3 -->
+          <div class="collectible-thumb">
+            <svg viewBox="0 0 60 75" xmlns="http://www.w3.org/2000/svg">
+              <rect width="60" height="75" fill="#4060a0"/>
+              <rect x="5" y="5" width="50" height="65" rx="2" fill="#d0c8f0" stroke="#888" stroke-width="1.5"/>
+              <text x="30" y="28" font-family="Bangers" font-size="8" fill="#333" text-anchor="middle">POKEMON</text>
+              <ellipse cx="30" cy="45" rx="16" ry="16" fill="white" stroke="#333" stroke-width="1.5"/>
+              <ellipse cx="30" cy="45" rx="16" ry="6" fill="#333"/>
+              <circle cx="30" cy="45" r="5" fill="white" stroke="#333" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <!-- thumb 4 -->
+          <div class="collectible-thumb">
+            <svg viewBox="0 0 60 75" xmlns="http://www.w3.org/2000/svg">
+              <rect width="60" height="75" fill="#a03020"/>
+              <rect x="5" y="5" width="50" height="65" rx="2" fill="#f0e8d8" stroke="#888" stroke-width="1.5"/>
+              <text x="30" y="22" font-family="Bangers" font-size="7" fill="#cc2200" text-anchor="middle">LIMITED</text>
+              <text x="30" y="32" font-family="Bangers" font-size="7" fill="#cc2200" text-anchor="middle">EDITION</text>
+              <circle cx="30" cy="52" r="14" fill="#d4a020" stroke="#111" stroke-width="1.5"/>
+              <text x="30" y="57" font-family="Bangers" font-size="12" fill="#fff" text-anchor="middle">★</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- Collectibles Section -->
+    <div class="collectibles-section">
+      <h2>Collectibles collage</h2>
+      <p>Dedicated to the marketplace for classic storytelling for vintage and modern rarities: action comics, rare action figures, and unique collectibles.</p>
+
+      <div class="collectibles-grid">
+        <!-- Comic book -->
+        <div class="collectible-thumb" style="width:60px; height:80px;">
+          <svg viewBox="0 0 60 80" xmlns="http://www.w3.org/2000/svg">
+            <rect width="60" height="80" fill="#8a7060"/>
+            <rect x="4" y="4" width="52" height="72" rx="2" fill="#e8d8b0" stroke="#666" stroke-width="1"/>
+            <text x="30" y="22" font-family="Bangers" font-size="8" fill="#c03020" text-anchor="middle">VINTAGE</text>
+            <text x="30" y="32" font-family="Bangers" font-size="7" fill="#333" text-anchor="middle">COMICS</text>
+            <rect x="8" y="36" width="44" height="32" rx="1" fill="#4a3020"/>
+            <text x="30" y="55" font-family="Bangers" font-size="14" fill="#f5c800" text-anchor="middle">★</text>
+          </svg>
+        </div>
+        <!-- Figure -->
+        <div class="collectible-thumb" style="width:60px; height:80px;">
+          <svg viewBox="0 0 60 80" xmlns="http://www.w3.org/2000/svg">
+            <rect width="60" height="80" fill="#88b0d8"/>
+            <circle cx="30" cy="20" r="12" fill="#f0c8a0"/>
+            <rect x="18" y="33" width="24" height="28" rx="2" fill="#2060c0"/>
+            <rect x="10" y="35" width="10" height="22" rx="3" fill="#2060c0"/>
+            <rect x="40" y="35" width="10" height="22" rx="3" fill="#2060c0"/>
+            <rect x="18" y="61" width="10" height="18" rx="3" fill="#1a4090"/>
+            <rect x="32" y="61" width="10" height="18" rx="3" fill="#1a4090"/>
+          </svg>
+        </div>
+        <!-- Pokemon card -->
+        <div class="collectible-thumb" style="width:60px; height:80px;">
+          <svg viewBox="0 0 60 80" xmlns="http://www.w3.org/2000/svg">
+            <rect width="60" height="80" fill="#6080c0" rx="3"/>
+            <rect x="3" y="3" width="54" height="74" rx="4" fill="#d8e8f8" stroke="#aac" stroke-width="1"/>
+            <ellipse cx="30" cy="42" rx="20" ry="20" fill="white" stroke="#333" stroke-width="1.5"/>
+            <ellipse cx="30" cy="42" rx="20" ry="7" fill="#333"/>
+            <circle cx="30" cy="42" r="6" fill="white" stroke="#333" stroke-width="1.5"/>
+            <text x="30" y="18" font-family="Bangers" font-size="7" fill="#555" text-anchor="middle">POKÉMON</text>
+          </svg>
+        </div>
+        <!-- Superhero comic -->
+        <div class="collectible-thumb" style="width:60px; height:80px;">
+          <svg viewBox="0 0 60 80" xmlns="http://www.w3.org/2000/svg">
+            <rect width="60" height="80" fill="#c03020" rx="2"/>
+            <rect x="3" y="3" width="54" height="74" rx="2" fill="#f0e8d0" stroke="#888" stroke-width="1"/>
+            <text x="30" y="16" font-family="Bangers" font-size="7" fill="#c03020" text-anchor="middle">MARVEL</text>
+            <rect x="8" y="20" width="44" height="40" rx="1" fill="#2060a0"/>
+            <text x="30" y="46" font-family="Bangers" font-size="22" fill="#f5c800" text-anchor="middle">X</text>
+            <text x="30" y="70" font-family="Bangers" font-size="8" fill="#555" text-anchor="middle">LIMITED ED.</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <footer>footer &nbsp;|&nbsp; © 2024 Bumdee Comics &nbsp;|&nbsp; All Rights Reserved</footer>
+</div>
+
+<!-- ===== SHOP PAGE ===== -->
+<div id="page-shop" class="page">
+  <div class="shop-header">
+    <div class="sunburst"></div>
+    <div class="logo-badge" style="width:100px; height:100px; position:relative; z-index:1; margin:0 auto 16px;">
+      <img src="logo.png" alt="Bumdee Comics Logo" style="width:100%;height:100%;object-fit:contain;">
+    </div>
+    <div class="shop-banner" style="position:relative; z-index:1;">
+      <div class="sub">BUMDEE</div>
+      <h1>MERCHANDISE</h1>
+    </div>
+  </div>
+
+  <div class="shop-content">
+    <!-- Row 1 -->
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-img bg-tan">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="5" width="80" height="90" rx="4" fill="#e8d8b0" stroke="#666" stroke-width="2"/>
+            <text x="50" y="28" font-family="Bangers" font-size="12" fill="#c03020" text-anchor="middle">VINTAGE</text>
+            <text x="50" y="40" font-family="Bangers" font-size="10" fill="#333" text-anchor="middle">COMIC GROOTS</text>
+            <rect x="14" y="44" width="72" height="44" rx="2" fill="#4a3020"/>
+            <circle cx="50" cy="66" r="18" fill="#4a8020" stroke="#111" stroke-width="1.5"/>
+            <text x="50" y="72" font-family="Bangers" font-size="16" fill="#8adc20" text-anchor="middle">G</text>
+          </svg>
+        </div>
+        <div class="product-info">
+          <div class="name">Vintage Comic Groots</div>
+          <div class="price">$15.00</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img bg-blue">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="28" r="16" fill="#f0c890"/>
+            <rect x="28" y="44" width="44" height="36" rx="3" fill="#c03020"/>
+            <rect x="14" y="46" width="18" height="30" rx="3" fill="#c03020"/>
+            <rect x="68" y="46" width="18" height="30" rx="3" fill="#c03020"/>
+            <rect x="28" y="80" width="18" height="20" rx="3" fill="#2040a0"/>
+            <rect x="54" y="80" width="18" height="20" rx="3" fill="#2040a0"/>
+          </svg>
+        </div>
+        <div class="product-info">
+          <div class="name">Action Figure</div>
+          <div class="price">$15.00</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img bg-yellow">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="5" width="84" height="90" rx="6" fill="#d8e8f8" stroke="#aac" stroke-width="2"/>
+            <text x="50" y="22" font-family="Bangers" font-size="10" fill="#555" text-anchor="middle">POKÉMON</text>
+            <ellipse cx="50" cy="58" rx="28" ry="28" fill="white" stroke="#333" stroke-width="2"/>
+            <ellipse cx="50" cy="58" rx="28" ry="10" fill="#333"/>
+            <circle cx="50" cy="58" r="9" fill="white" stroke="#333" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="product-info">
+          <div class="name">Pokémon Pokémon Card</div>
+          <div class="price">$15.00</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img bg-dark" style="position:relative;">
+          <div class="badge-limited">LIMITED EDITION</div>
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="30" cy="50" r="20" fill="#d4a020" stroke="#111" stroke-width="1.5"/>
+            <circle cx="70" cy="50" r="20" fill="#c03020" stroke="#111" stroke-width="1.5"/>
+            <circle cx="50" cy="30" r="20" fill="#2060a0" stroke="#111" stroke-width="1.5"/>
+            <text x="30" y="55" font-family="Bangers" font-size="14" fill="white" text-anchor="middle">★</text>
+            <text x="70" y="55" font-family="Bangers" font-size="14" fill="white" text-anchor="middle">★</text>
+            <text x="50" y="35" font-family="Bangers" font-size="14" fill="white" text-anchor="middle">★</text>
+          </svg>
+        </div>
+        <div class="product-info">
+          <div class="name">Limited Edition Pin Set</div>
+          <div class="price">$15.00</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-img bg-dark" style="position:relative;">
+          <div class="badge-limited">LIMITED EDITION</div>
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="50,10 58,38 88,38 64,56 74,84 50,66 26,84 36,56 12,38 42,38" fill="#d4a020" stroke="#111" stroke-width="1.5"/>
+            <polygon points="50,24 54,38 68,38 58,46 62,60 50,52 38,60 42,46 32,38 46,38" fill="#f5e050"/>
+          </svg>
+        </div>
+        <div class="product-info">
+          <div class="name">Limited Edition Pin Set</div>
+          <div class="price">$13.00</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img bg-yellow">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="5" width="84" height="90" rx="6" fill="#d8e8f8" stroke="#aac" stroke-width="2"/>
+            <text x="50" y="22" font-family="Bangers" font-size="10" fill="#555" text-anchor="middle">POKÉMON</text>
+            <rect x="16" y="28" width="68" height="55" rx="4" fill="#a8c8e8"/>
+            <circle cx="50" cy="56" r="20" fill="#f5c800" stroke="#333" stroke-width="2"/>
+            <text x="50" y="62" font-family="Bangers" font-size="18" fill="#c03020" text-anchor="middle">P</text>
+          </svg>
+        </div>
+        <div class="product-info">
+          <div class="name">Pokémon Pokémon Card</div>
+          <div class="price">$15.00</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img" style="background:#1a3060;">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="25" r="16" fill="#f0c890"/>
+            <rect x="30" y="42" width="40" height="36" rx="3" fill="#1a6ab5"/>
+            <polygon points="50,44 56,56 50,50 44,56" fill="#f5c800"/>
+            <rect x="16" y="44" width="16" height="28" rx="3" fill="#1a6ab5"/>
+            <rect x="68" y="44" width="16" height="28" rx="3" fill="#1a6ab5"/>
+            <rect x="30" y="78" width="16" height="22" rx="3" fill="#1a4090"/>
+            <rect x="54" y="78" width="16" height="22" rx="3" fill="#1a4090"/>
+          </svg>
+        </div>
+        <div class="product-info">
+          <div class="name">Superhero Statue</div>
+          <div class="price">$15.00</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img bg-dark" style="position:relative;">
+          <div class="badge-limited">LIMITED EDITION</div>
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="35" fill="#d4a020" stroke="#111" stroke-width="2"/>
+            <circle cx="50" cy="50" r="28" fill="none" stroke="#111" stroke-width="1.5"/>
+            <text x="50" y="45" font-family="Bangers" font-size="14" fill="#111" text-anchor="middle">PIN</text>
+            <text x="50" y="60" font-family="Bangers" font-size="14" fill="#111" text-anchor="middle">SET</text>
+          </svg>
+        </div>
+        <div class="product-info">
+          <div class="name">Limited Edition Pin</div>
+          <div class="price">$15.00</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 3 -->
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-img bg-tan">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="5" width="84" height="90" rx="4" fill="#e8d8b0" stroke="#666" stroke-width="2"/>
+            <text x="50" y="22" font-family="Bangers" font-size="10" fill="#c03020" text-anchor="middle">VINTAGE</text>
+            <rect x="12" y="26" width="76" height="60" rx="2" fill="#4a3020"/>
+            <text x="50" y="62" font-family="Bangers" font-size="18" fill="#f5c800" text-anchor="middle">CARG</text>
+          </svg>
+        </div>
+        <div class="product-info">
+          <div class="name">Vintage Carg Comic</div>
+          <div class="price">$12.99</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img" style="background:#1a3060;">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="5" width="84" height="90" rx="4" fill="#e8d8b0" stroke="#666" stroke-width="2"/>
+            <text x="50" y="22" font-family="Bangers" font-size="10" fill="#c03020" text-anchor="middle">SUPERHERO</text>
+            <rect x="12" y="26" width="76" height="60" rx="2" fill="#1a3060"/>
+            <circle cx="50" cy="22" r="10" fill="#f0c890" style="transform:translateY(36px)"/>
+            <text x="50" y="68" font-family="Bangers" font-size="24" fill="#f5c800" text-anchor="middle">★</text>
+          </svg>
+        </div>
+        <div class="product-info">
+          <div class="name">Superhero Comic</div>
+          <div class="price">$15.90</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img bg-dark" style="position:relative;">
+          <div class="badge-limited">LIMITED EDITION</div>
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="35" cy="40" r="22" fill="#2060a0" stroke="#111" stroke-width="1.5"/>
+            <circle cx="65" cy="60" r="22" fill="#c03020" stroke="#111" stroke-width="1.5"/>
+            <text x="35" y="46" font-family="Bangers" font-size="14" fill="white" text-anchor="middle">PIN</text>
+            <text x="65" y="66" font-family="Bangers" font-size="14" fill="white" text-anchor="middle">SET</text>
+          </svg>
+        </div>
+        <div class="product-info">
+          <div class="name">Limited Edition Pin Set</div>
+          <div class="price">$15.00</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img bg-dark" style="position:relative;">
+          <div class="badge-limited">LIMITED EDITION</div>
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="5" width="84" height="90" rx="4" fill="#c0c0d8" stroke="#888" stroke-width="2"/>
+            <text x="50" y="22" font-family="Bangers" font-size="8" fill="#c03020" text-anchor="middle">LIMITED ED.</text>
+            <text x="50" y="56" font-family="Bangers" font-size="38" fill="#c03020" text-anchor="middle">X</text>
+          </svg>
+        </div>
+        <div class="product-info">
+          <div class="name">Limited Edition Pin</div>
+          <div class="price">$18.00</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>footer &nbsp;|&nbsp; © 2024 Bumdee Comics &nbsp;|&nbsp; All Rights Reserved</footer>
+</div>
+
+<!-- ===== EVENTS PAGE ===== -->
+<div id="page-events" class="page">
+  <div class="events-content">
+
+    <div style="display:flex; justify-content:flex-start; margin-bottom:20px;">
+      <div class="logo-badge" style="width:110px; height:110px;">
+        <img src="logo.png" alt="Bumdee Comics Logo" style="width:100%;height:100%;object-fit:contain;">
+      </div>
+    </div>
+
+    <div class="events-layout">
+      <!-- Map -->
+      <div>
+        <div class="map-container">
+          <div class="map-placeholder">
+            <!-- Road grid -->
+            <div class="map-grid"></div>
+            <!-- Roads -->
+            <div class="map-road-h" style="top:30%;"></div>
+            <div class="map-road-h" style="top:55%;"></div>
+            <div class="map-road-h" style="top:75%;"></div>
+            <div class="map-road-v" style="left:25%;"></div>
+            <div class="map-road-v" style="left:50%;"></div>
+            <div class="map-road-v" style="left:72%;"></div>
+            <!-- Pin -->
+            <div class="map-pin">📍</div>
+            <!-- Google Maps label -->
+            <div style="position:absolute; top:8px; left:8px; background:white; padding:4px 8px; font-size:11px; font-family:'Oswald', sans-serif; border:1px solid #ccc; border-radius:2px;">Google Maps</div>
+            <!-- Zoom controls -->
+            <div style="position:absolute; bottom:20px; right:10px; background:white; border:1px solid #ccc; border-radius:2px; overflow:hidden;">
+              <div style="padding:4px 8px; font-size:16px; font-weight:bold; border-bottom:1px solid #ccc; cursor:pointer; text-align:center;">+</div>
+              <div style="padding:4px 8px; font-size:16px; font-weight:bold; cursor:pointer; text-align:center;">−</div>
             </div>
-        </section>
-    </main>
+            <!-- Map attribution -->
+            <div style="position:absolute; bottom:4px; left:4px; font-size:9px; color:#666;">Map data ©2024 Google &nbsp;|&nbsp; Terms of use</div>
+          </div>
+        </div>
+      </div>
 
-    <footer id="footer">
-        <p>footer</p>
-    </footer>
+      <!-- Events list -->
+      <div class="events-shows">
+        <h2>Visit Us at Upcoming Shows</h2>
 
-    <script src="script.js"></script>
+        <div class="event-item">
+          <div class="event-icon">📅</div>
+          <div>
+            <div class="event-desc"><strong>Dates:</strong></div>
+            <div class="event-desc">Detailed upcoming storytelling events between the comic-con and calendar. Fictional examples shown in image.</div>
+          </div>
+        </div>
+
+        <div class="event-item">
+          <div class="event-icon">📅</div>
+          <div>
+            <div class="event-desc">Detailed comical calendars — the events are shown at local organizations to help promote and describe collectibles.</div>
+          </div>
+        </div>
+
+        <hr class="section-divider" style="margin:16px 0;">
+
+        <div class="event-date">
+          <span>Oct 12 — Comic-Con</span>
+          <span>Nov 5 — Toy Fair</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <footer>footer &nbsp;|&nbsp; © 2024 Bumdee Comics &nbsp;|&nbsp; All Rights Reserved</footer>
+</div>
+
+<script>
+  function showPage(pageId, linkEl) {
+    // Hide all pages
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    // Show target
+    document.getElementById('page-' + pageId).classList.add('active');
+    // Update nav links
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    if (linkEl) linkEl.classList.add('active');
+    window.scrollTo(0, 0);
+    return false;
+  }
+</script>
+
 </body>
 </html>
