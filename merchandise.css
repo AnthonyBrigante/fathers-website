@@ -1,0 +1,212 @@
+/* HERO */
+.merch-hero {
+  background: #29a8d4;
+  padding: 30px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.merch-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(-45deg, transparent 0, transparent 10px, rgba(255,255,255,0.05) 10px, rgba(255,255,255,0.05) 20px);
+}
+
+.merch-hero-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.pre-title {
+  font-family: 'Bangers', cursive;
+  font-size: 40px;
+  letter-spacing: 3px;
+  color: white;
+  -webkit-text-stroke: 2px var(--dark);
+  text-shadow: 3px 3px 0 var(--dark);
+}
+
+.merch-hero h1 {
+  font-family: 'Bangers', cursive;
+  font-size: 68px;
+  letter-spacing: 4px;
+  color: var(--yellow);
+  -webkit-text-stroke: 3px var(--dark);
+  text-shadow: 4px 4px 0 var(--dark);
+  line-height: 0.9;
+}
+
+.sunburst {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200%;
+  height: 200%;
+  opacity: 0.15;
+  background: repeating-conic-gradient(var(--yellow) 0deg 10deg, transparent 10deg 20deg);
+}
+
+/* CONTROLS */
+.merch-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+#searchInput {
+  padding: 8px 12px;
+  border: 2px solid var(--border);
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.item-count {
+  font-family: 'Oswald', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* GRID */
+.merch-grid-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px 40px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.product-card {
+  background: white;
+  border: 2px solid var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.product-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.product-img {
+  width: 100%;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.product-img svg {
+  width: 80%;
+  height: 80%;
+}
+
+.product-info {
+  padding: 8px 10px;
+  border-top: 2px solid var(--border);
+}
+
+.product-info .name {
+  font-family: 'Oswald', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
+
+.product-info .price {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--red);
+}
+
+/* COLOR SCHEMES */
+.bg-tan { background: #c8b89a; }
+.bg-blue { background: #4a90d9; }
+.bg-dark { background: #2a2a2a; }
+.bg-red { background: #c03020; }
+.bg-yellow { background: #e8c040; }
+.bg-green { background: #3a8a4a; }
+
+/* LIGHTBOX */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox.show { display: flex; }
+
+.lightbox-inner {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.lightbox img {
+  width: 100%;
+  height: auto;
+}
+
+.lightbox-info h2 {
+  margin-top: 10px;
+  font-family: 'Bangers', cursive;
+}
+
+.lightbox-info p {
+  font-size: 14px;
+  color: #666;
+}
+
+/* BADGE */
+.badge-limited {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  background: var(--red);
+  color: white;
+  font-family: 'Bangers', cursive;
+  font-size: 9px;
+  padding: 2px 5px;
+  letter-spacing: 0.5px;
+  border: 1px solid var(--dark);
+  border-radius: 2px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 700px) {
+  .product-grid { grid-template-columns: repeat(2, 1fr); }
+  .merch-controls { flex-direction: column; gap: 10px; }
+  .merch-hero h1 { font-size: 44px; }
+}

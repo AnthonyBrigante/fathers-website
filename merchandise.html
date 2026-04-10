@@ -4,67 +4,481 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bumdee Comics — Merchandise</title>
-  <link rel="stylesheet" href="shared.css">
-  <link rel="stylesheet" href="merchandise.css">
+  <style>
+    :root {
+      --cream: #f5f0dc;
+      --dark: #1a1a1a;
+      --red: #cc2200;
+      --yellow: #f5c800;
+      --blue: #1a6ab5;
+      --border: #333;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      min-height: 100vh;
+    }
+
+    /* ===== LOGO ===== */
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .logo-badge {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      flex-shrink: 0;
+      mix-blend-mode: multiply;
+    }
+
+    .logo-badge svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* ===== NAV ===== */
+    nav {
+      display: flex;
+      align-items: stretch;
+      background: var(--cream);
+      border-bottom: 3px solid var(--border);
+      padding: 12px 20px;
+      gap: 20px;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+      border-left: 3px solid var(--border);
+      padding-left: 16px;
+      margin-left: 10px;
+    }
+
+    .nav-links a {
+      font-family: sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-decoration: none;
+      color: var(--dark);
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--red);
+      text-decoration: underline;
+    }
+
+    /* ===== SHOP PAGE ===== */
+    .shop-header {
+      background: #29a8d4;
+      padding: 30px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .shop-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent 0,
+        transparent 10px,
+        rgba(255,255,255,0.05) 10px,
+        rgba(255,255,255,0.05) 20px
+      );
+    }
+
+    .shop-banner {
+      display: inline-block;
+      position: relative;
+      z-index: 1;
+    }
+
+    .shop-banner h1 {
+      font-family: sans-serif;
+      font-size: 68px;
+      letter-spacing: 4px;
+      color: var(--yellow);
+      -webkit-text-stroke: 3px var(--dark);
+      text-shadow: 4px 4px 0 var(--dark);
+      line-height: 0.9;
+    }
+
+    .shop-banner .sub {
+      font-family: sans-serif;
+      font-size: 40px;
+      letter-spacing: 3px;
+      color: white;
+      -webkit-text-stroke: 2px var(--dark);
+      text-shadow: 3px 3px 0 var(--dark);
+    }
+
+    .shop-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 30px 20px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .product-card {
+      background: white;
+      border: 2px solid var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+
+    .product-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    }
+
+    .product-img {
+      width: 100%;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-img svg {
+      width: 80%;
+      height: 80%;
+    }
+
+    .product-info {
+      padding: 8px 10px;
+      border-top: 2px solid var(--border);
+    }
+
+    .product-info .name {
+      font-family: sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
+    }
+
+    .product-info .price {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--red);
+    }
+
+    /* Product color schemes */
+    .bg-tan    { background: #c8b89a; }
+    .bg-blue   { background: #4a90d9; }
+    .bg-dark   { background: #2a2a2a; }
+    .bg-red    { background: #c03020; }
+    .bg-yellow { background: #e8c040; }
+    .bg-green  { background: #3a8a4a; }
+
+    /* ===== SUNBURST ===== */
+    .sunburst {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 200%;
+      height: 200%;
+      opacity: 0.15;
+      background: repeating-conic-gradient(var(--yellow) 0deg 10deg, transparent 10deg 20deg);
+    }
+
+    /* ===== LIMITED BADGE ===== */
+    .badge-limited {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      background: var(--red);
+      color: white;
+      font-family: sans-serif;
+      font-size: 9px;
+      padding: 2px 5px;
+      letter-spacing: 0.5px;
+      border: 1px solid var(--dark);
+      border-radius: 2px;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--dark);
+      color: var(--cream);
+      text-align: center;
+      padding: 14px;
+      font-family: sans-serif;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 40px;
+      border-top: 4px solid var(--yellow);
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 700px) {
+      .product-grid { grid-template-columns: repeat(2, 1fr); }
+      .shop-banner h1 { font-size: 44px; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- ── NAV ───────────────────────────────────────────────── -->
-  <nav class="site-nav">
-    <a href="index.html" class="nav-logo">
-      <img src="logo.png" alt="Bumdee Comics Logo" style="width:100%;height:100%;object-fit:contain;">
-    </a>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="merchandise.html" class="active">Merchandise</a>
-      <a href="events.html">Events</a>
-    </div>
-  </nav>
-
-  <!-- ── HERO ──────────────────────────────────────────────── -->
-  <header class="merch-hero">
-    <div class="sunburst"></div>
-    <div class="merch-hero-inner">
-      <span class="pre-title">Bumdee</span>
-      <h1>Merchandise</h1>
-    </div>
-  </header>
-
-  <!-- ── SEARCH / COUNT BAR ────────────────────────────────── -->
-  <div class="merch-controls">
-    <input
-      type="text"
-      id="searchInput"
-      placeholder="Search collectibles..."
-      autocomplete="off"
-    />
-    <span class="item-count" id="itemCount">30 items</span>
-  </div>
-
-  <!-- ── PRODUCT GRID ───────────────────────────────────────── -->
-  <div class="merch-grid-wrap">
-    <div class="product-grid" id="productGrid">
-      <!-- Cards injected by merchandise.js -->
+<!-- ===== NAV ===== -->
+<nav>
+  <div class="logo-wrap">
+    <div class="logo-badge">
+      <img src="logo.png" alt="logo" style="width:100%; height:100%; object-fit:contain;">
     </div>
   </div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="merchandise.html" class="active">Merchandise</a>
+    <a href="events.html">Events</a>
+  </div>
+</nav>
 
-  <!-- ── LIGHTBOX ──────────────────────────────────────────── -->
-  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Product detail">
-    <div class="lightbox-inner">
-      <button class="lightbox-close" id="lbClose" aria-label="Close">✕</button>
-      <img id="lbImg" src="" alt="">
-      <div class="lightbox-info">
-        <h2 id="lbName"></h2>
-        <p id="lbNum"></p>
+<!-- ===== SHOP PAGE ===== -->
+<div class="shop-header">
+  <div class="sunburst"></div>
+  <div class="logo-badge" style="width:100px; height:100px; position:relative; z-index:1; margin:0 auto 16px;">
+    <img src="logo.png" alt="Bumdee Comics Logo" style="width:100%;height:100%;object-fit:contain;">
+  </div>
+  <div class="shop-banner" style="position:relative; z-index:1;">
+    <div class="sub">BUMDEE</div>
+    <h1>MERCHANDISE</h1>
+  </div>
+</div>
+
+<div class="shop-content">
+  <!-- Row 1 -->
+  <div class="product-grid">
+    <div class="product-card">
+      <div class="product-img bg-tan">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="5" width="80" height="90" rx="4" fill="#e8d8b0" stroke="#666" stroke-width="2"/>
+          <text x="50" y="28" font-family="Bangers" font-size="12" fill="#c03020" text-anchor="middle">VINTAGE</text>
+          <text x="50" y="40" font-family="Bangers" font-size="10" fill="#333" text-anchor="middle">COMIC GROOTS</text>
+          <rect x="14" y="44" width="72" height="44" rx="2" fill="#4a3020"/>
+          <circle cx="50" cy="66" r="18" fill="#4a8020" stroke="#111" stroke-width="1.5"/>
+          <text x="50" y="72" font-family="Bangers" font-size="16" fill="#8adc20" text-anchor="middle">G</text>
+        </svg>
+      </div>
+      <div class="product-info">
+        <div class="name">Vintage Comic Groots</div>
+        <div class="price">$15.00</div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img bg-blue">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="28" r="16" fill="#f0c890"/>
+          <rect x="28" y="44" width="44" height="36" rx="3" fill="#c03020"/>
+          <rect x="14" y="46" width="18" height="30" rx="3" fill="#c03020"/>
+          <rect x="68" y="46" width="18" height="30" rx="3" fill="#c03020"/>
+          <rect x="28" y="80" width="18" height="20" rx="3" fill="#2040a0"/>
+          <rect x="54" y="80" width="18" height="20" rx="3" fill="#2040a0"/>
+        </svg>
+      </div>
+      <div class="product-info">
+        <div class="name">Action Figure</div>
+        <div class="price">$15.00</div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img bg-yellow">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="5" width="84" height="90" rx="6" fill="#d8e8f8" stroke="#aac" stroke-width="2"/>
+          <text x="50" y="22" font-family="Bangers" font-size="10" fill="#555" text-anchor="middle">POKÉMON</text>
+          <ellipse cx="50" cy="58" rx="28" ry="28" fill="white" stroke="#333" stroke-width="2"/>
+          <ellipse cx="50" cy="58" rx="28" ry="10" fill="#333"/>
+          <circle cx="50" cy="58" r="9" fill="white" stroke="#333" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="product-info">
+        <div class="name">Pokémon Pokémon Card</div>
+        <div class="price">$15.00</div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img bg-dark" style="position:relative;">
+        <div class="badge-limited">LIMITED EDITION</div>
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="30" cy="50" r="20" fill="#d4a020" stroke="#111" stroke-width="1.5"/>
+          <circle cx="70" cy="50" r="20" fill="#c03020" stroke="#111" stroke-width="1.5"/>
+          <circle cx="50" cy="30" r="20" fill="#2060a0" stroke="#111" stroke-width="1.5"/>
+          <text x="30" y="55" font-family="Bangers" font-size="14" fill="white" text-anchor="middle">★</text>
+          <text x="70" y="55" font-family="Bangers" font-size="14" fill="white" text-anchor="middle">★</text>
+          <text x="50" y="35" font-family="Bangers" font-size="14" fill="white" text-anchor="middle">★</text>
+        </svg>
+      </div>
+      <div class="product-info">
+        <div class="name">Limited Edition Pin Set</div>
+        <div class="price">$15.00</div>
       </div>
     </div>
   </div>
 
-  <!-- ── FOOTER ─────────────────────────────────────────────── -->
-  <footer class="site-footer">
-    <span>Bumdee Comics</span> &nbsp;·&nbsp; All Rights Reserved &nbsp;·&nbsp; © 2024
-  </footer>
+  <!-- Row 2 -->
+  <div class="product-grid">
+    <div class="product-card">
+      <div class="product-img bg-dark" style="position:relative;">
+        <div class="badge-limited">LIMITED EDITION</div>
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="50,10 58,38 88,38 64,56 74,84 50,66 26,84 36,56 12,38 42,38" fill="#d4a020" stroke="#111" stroke-width="1.5"/>
+          <polygon points="50,24 54,38 68,38 58,46 62,60 50,52 38,60 42,46 32,38 46,38" fill="#f5e050"/>
+        </svg>
+      </div>
+      <div class="product-info">
+        <div class="name">Limited Edition Pin Set</div>
+        <div class="price">$13.00</div>
+      </div>
+    </div>
 
-  <script src="merchandise.js"></script>
+    <div class="product-card">
+      <div class="product-img bg-yellow">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="5" width="84" height="90" rx="6" fill="#d8e8f8" stroke="#aac" stroke-width="2"/>
+          <text x="50" y="22" font-family="Bangers" font-size="10" fill="#555" text-anchor="middle">POKÉMON</text>
+          <rect x="16" y="28" width="68" height="55" rx="4" fill="#a8c8e8"/>
+          <circle cx="50" cy="56" r="20" fill="#f5c800" stroke="#333" stroke-width="2"/>
+          <text x="50" y="62" font-family="Bangers" font-size="18" fill="#c03020" text-anchor="middle">P</text>
+        </svg>
+      </div>
+      <div class="product-info">
+        <div class="name">Pokémon Pokémon Card</div>
+        <div class="price">$15.00</div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img" style="background:#1a3060;">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="25" r="16" fill="#f0c890"/>
+          <rect x="30" y="42" width="40" height="36" rx="3" fill="#1a6ab5"/>
+          <polygon points="50,44 56,56 50,50 44,56" fill="#f5c800"/>
+          <rect x="16" y="44" width="16" height="28" rx="3" fill="#1a6ab5"/>
+          <rect x="68" y="44" width="16" height="28" rx="3" fill="#1a6ab5"/>
+          <rect x="30" y="78" width="16" height="22" rx="3" fill="#1a4090"/>
+          <rect x="54" y="78" width="16" height="22" rx="3" fill="#1a4090"/>
+        </svg>
+      </div>
+      <div class="product-info">
+        <div class="name">Superhero Statue</div>
+        <div class="price">$15.00</div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img bg-dark" style="position:relative;">
+        <div class="badge-limited">LIMITED EDITION</div>
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="35" fill="#d4a020" stroke="#111" stroke-width="2"/>
+          <circle cx="50" cy="50" r="28" fill="none" stroke="#111" stroke-width="1.5"/>
+          <text x="50" y="45" font-family="Bangers" font-size="14" fill="#111" text-anchor="middle">PIN</text>
+          <text x="50" y="60" font-family="Bangers" font-size="14" fill="#111" text-anchor="middle">SET</text>
+        </svg>
+      </div>
+      <div class="product-info">
+        <div class="name">Limited Edition Pin</div>
+        <div class="price">$15.00</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Row 3 -->
+  <div class="product-grid">
+    <div class="product-card">
+      <div class="product-img bg-tan">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="5" width="84" height="90" rx="4" fill="#e8d8b0" stroke="#666" stroke-width="2"/>
+          <text x="50" y="22" font-family="Bangers" font-size="10" fill="#c03020" text-anchor="middle">VINTAGE</text>
+          <rect x="12" y="26" width="76" height="60" rx="2" fill="#4a3020"/>
+          <text x="50" y="62" font-family="Bangers" font-size="18" fill="#f5c800" text-anchor="middle">CARG</text>
+        </svg>
+      </div>
+      <div class="product-info">
+        <div class="name">Vintage Carg Comic</div>
+        <div class="price">$12.99</div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img" style="background:#1a3060;">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="5" width="84" height="90" rx="4" fill="#e8d8b0" stroke="#666" stroke-width="2"/>
+          <text x="50" y="22" font-family="Bangers" font-size="10" fill="#c03020" text-anchor="middle">SUPERHERO</text>
+          <rect x="12" y="26" width="76" height="60" rx="2" fill="#1a3060"/>
+          <circle cx="50" cy="22" r="10" fill="#f0c890" style="transform:translateY(36px)"/>
+          <text x="50" y="68" font-family="Bangers" font-size="24" fill="#f5c800" text-anchor="middle">★</text>
+        </svg>
+      </div>
+      <div class="product-info">
+        <div class="name">Superhero Comic</div>
+        <div class="price">$15.90</div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img bg-dark" style="position:relative;">
+        <div class="badge-limited">LIMITED EDITION</div>
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="35" cy="40" r="22" fill="#2060a0" stroke="#111" stroke-width="1.5"/>
+          <circle cx="65" cy="60" r="22" fill="#c03020" stroke="#111" stroke-width="1.5"/>
+          <text x="35" y="46" font-family="Bangers" font-size="14" fill="white" text-anchor="middle">PIN</text>
+          <text x="65" y="66" font-family="Bangers" font-size="14" fill="white" text-anchor="middle">SET</text>
+        </svg>
+      </div>
+      <div class="product-info">
+        <div class="name">Limited Edition Pin Set</div>
+        <div class="price">$15.00</div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img bg-dark" style="position:relative;">
+        <div class="badge-limited">LIMITED EDITION</div>
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="5" width="84" height="90" rx="4" fill="#c0c0d8" stroke="#888" stroke-width="2"/>
+          <text x="50" y="22" font-family="Bangers" font-size="8" fill="#c03020" text-anchor="middle">LIMITED ED.</text>
+          <text x="50" y="56" font-family="Bangers" font-size="38" fill="#c03020" text-anchor="middle">X</text>
+        </svg>
+      </div>
+      <div class="product-info">
+        <div class="name">Limited Edition Pin</div>
+        <div class="price">$18.00</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>footer &nbsp;|&nbsp; © 2024 Bumdee Comics &nbsp;|&nbsp; All Rights Reserved</footer>
+
 </body>
 </html>
