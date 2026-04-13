@@ -499,13 +499,13 @@
 <nav>
   <div class="logo-wrap">
     <div class="logo-badge">
-    <img src="imgs/logo.png" alt="logo" style="width:100%; height:100%; object-fit:contain;">
+      <img src="imgs/logo.png" alt="logo" style="width:100%; height:100%; object-fit:contain;">
     </div>
   </div>
   <div class="nav-links">
-    <a href="#" class="active" onclick="showPage('home', this)">Home</a>
-    <a href="#" onclick="showPage('shop', this)">Merchandise</a>
-    <a href="#" onclick="showPage('events', this)">Events</a>
+    <a href="index.html" class="active" onclick="showPage('home', this); return false;">Home</a>
+    <a href="merchandise.html" onclick="showPage('shop', this); return false;">Merchandise</a>
+    <a href="events.html" onclick="showPage('events', this); return false;">Events</a>
   </div>
 </nav>
 
@@ -526,7 +526,6 @@
           <!-- Dad tribute card -->
           <div class="tribute-card" style="width:160px; flex-shrink:0;">
             <div class="tribute-img">
-              <!-- Image of Dad tribute -->
               <img src="imgs/IMG_6658.jpg" alt="Tribute to Dad" style="width:100%; height:100%; object-fit:contain;">
             </div>
             <div class="tribute-label">Tribute to Dad</div>
@@ -540,250 +539,29 @@
       <!-- Right column: small collectibles thumbnails -->
       <div>
         <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px;">
-          <!-- thumb 1 -->
           <div class="collectible-thumb">
-  <img src="imgs/imagecomics.png" alt="Pokémon Collectible" style="width:100%; height:100%; object-fit:contain;">
-</div>
-          <!-- thumb 2 -->
-      <div class="collectible-thumb">
-  <img src="imgs/dc comics.png" alt="Pokémon Collectible" style="width:100%; height:100%; object-fit:contain;">
-</div>
-          <!-- thumb 3 -->
-<div class="collectible-thumb">
-  <img src="imgs/pokeball.jpg.png" alt="Pokémon Collectible" style="width:100%; height:100%; object-fit:contain;">
-</div>
-          <!-- thumb 4 -->
-         <div class="collectible-thumb">
-  <img src="imgs/marvel.png" alt="Marvel Collectible" style="width:100%; height:100%; object-fit:contain;">
-</div>
+            <img src="imgs/imagecomics.png" alt="Image Comics" style="width:100%; height:100%; object-fit:contain;">
+          </div>
+          <div class="collectible-thumb">
+            <img src="imgs/dc comics.png" alt="DC Comics" style="width:100%; height:100%; object-fit:contain;">
+          </div>
+          <div class="collectible-thumb">
+            <img src="imgs/pokeball.jpg.png" alt="Pokémon Collectible" style="width:100%; height:100%; object-fit:contain;">
+          </div>
+          <div class="collectible-thumb">
+            <img src="imgs/marvel.png" alt="Marvel Collectible" style="width:100%; height:100%; object-fit:contain;">
+          </div>
+        </div>
+      </div>
+    </div>
 
     <hr class="section-divider">
 
- 
-
   </div>
   <footer>footer &nbsp;|&nbsp; © 2024 Bumdee Comics &nbsp;|&nbsp; All Rights Reserved</footer>
 </div>
 
-<!-- ===== SHOP PAGE ===== -->
-<div id="page-shop" class="page">
-  <div class="shop-header">
-    <div class="sunburst"></div>
-    <div class="logo-badge" style="width:100px; height:100px; position:relative; z-index:1; margin:0 auto 16px;">
-      <img src="logo.png" alt="Bumdee Comics Logo" style="width:100%;height:100%;object-fit:contain;">
-    </div>
-    <div class="shop-banner" style="position:relative; z-index:1;">
-      <div class="sub">BUMDEE</div>
-      <h1>MERCHANDISE</h1>
-    </div>
-  </div>
 
-  <div class="shop-content">
-    <!-- Row 1 -->
-    <div class="product-grid">
-      <div class="product-card">
-        <div class="product-img bg-tan">
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <rect x="10" y="5" width="80" height="90" rx="4" fill="#e8d8b0" stroke="#666" stroke-width="2"/>
-            <text x="50" y="28" font-family="Bangers" font-size="12" fill="#c03020" text-anchor="middle">VINTAGE</text>
-            <text x="50" y="40" font-family="Bangers" font-size="10" fill="#333" text-anchor="middle">COMIC GROOTS</text>
-            <rect x="14" y="44" width="72" height="44" rx="2" fill="#4a3020"/>
-            <circle cx="50" cy="66" r="18" fill="#4a8020" stroke="#111" stroke-width="1.5"/>
-            <text x="50" y="72" font-family="Bangers" font-size="16" fill="#8adc20" text-anchor="middle">G</text>
-          </svg>
-        </div>
-        <div class="product-info">
-          <div class="name">Vintage Comic Groots</div>
-          <div class="price">$15.00</div>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <div class="product-img bg-blue">
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="28" r="16" fill="#f0c890"/>
-            <rect x="28" y="44" width="44" height="36" rx="3" fill="#c03020"/>
-            <rect x="14" y="46" width="18" height="30" rx="3" fill="#c03020"/>
-            <rect x="68" y="46" width="18" height="30" rx="3" fill="#c03020"/>
-            <rect x="28" y="80" width="18" height="20" rx="3" fill="#2040a0"/>
-            <rect x="54" y="80" width="18" height="20" rx="3" fill="#2040a0"/>
-          </svg>
-        </div>
-        <div class="product-info">
-          <div class="name">Action Figure</div>
-          <div class="price">$15.00</div>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <div class="product-img bg-yellow">
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <rect x="8" y="5" width="84" height="90" rx="6" fill="#d8e8f8" stroke="#aac" stroke-width="2"/>
-            <text x="50" y="22" font-family="Bangers" font-size="10" fill="#555" text-anchor="middle">POKÉMON</text>
-            <ellipse cx="50" cy="58" rx="28" ry="28" fill="white" stroke="#333" stroke-width="2"/>
-            <ellipse cx="50" cy="58" rx="28" ry="10" fill="#333"/>
-            <circle cx="50" cy="58" r="9" fill="white" stroke="#333" stroke-width="2"/>
-          </svg>
-        </div>
-        <div class="product-info">
-          <div class="name">Pokémon Pokémon Card</div>
-          <div class="price">$15.00</div>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <div class="product-img bg-dark" style="position:relative;">
-          <div class="badge-limited">LIMITED EDITION</div>
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="30" cy="50" r="20" fill="#d4a020" stroke="#111" stroke-width="1.5"/>
-            <circle cx="70" cy="50" r="20" fill="#c03020" stroke="#111" stroke-width="1.5"/>
-            <circle cx="50" cy="30" r="20" fill="#2060a0" stroke="#111" stroke-width="1.5"/>
-            <text x="30" y="55" font-family="Bangers" font-size="14" fill="white" text-anchor="middle">★</text>
-            <text x="70" y="55" font-family="Bangers" font-size="14" fill="white" text-anchor="middle">★</text>
-            <text x="50" y="35" font-family="Bangers" font-size="14" fill="white" text-anchor="middle">★</text>
-          </svg>
-        </div>
-        <div class="product-info">
-          <div class="name">Limited Edition Pin Set</div>
-          <div class="price">$15.00</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Row 2 -->
-    <div class="product-grid">
-      <div class="product-card">
-        <div class="product-img bg-dark" style="position:relative;">
-          <div class="badge-limited">LIMITED EDITION</div>
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <polygon points="50,10 58,38 88,38 64,56 74,84 50,66 26,84 36,56 12,38 42,38" fill="#d4a020" stroke="#111" stroke-width="1.5"/>
-            <polygon points="50,24 54,38 68,38 58,46 62,60 50,52 38,60 42,46 32,38 46,38" fill="#f5e050"/>
-          </svg>
-        </div>
-        <div class="product-info">
-          <div class="name">Limited Edition Pin Set</div>
-          <div class="price">$13.00</div>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <div class="product-img bg-yellow">
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <rect x="8" y="5" width="84" height="90" rx="6" fill="#d8e8f8" stroke="#aac" stroke-width="2"/>
-            <text x="50" y="22" font-family="Bangers" font-size="10" fill="#555" text-anchor="middle">POKÉMON</text>
-            <rect x="16" y="28" width="68" height="55" rx="4" fill="#a8c8e8"/>
-            <circle cx="50" cy="56" r="20" fill="#f5c800" stroke="#333" stroke-width="2"/>
-            <text x="50" y="62" font-family="Bangers" font-size="18" fill="#c03020" text-anchor="middle">P</text>
-          </svg>
-        </div>
-        <div class="product-info">
-          <div class="name">Pokémon Pokémon Card</div>
-          <div class="price">$15.00</div>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <div class="product-img" style="background:#1a3060;">
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="25" r="16" fill="#f0c890"/>
-            <rect x="30" y="42" width="40" height="36" rx="3" fill="#1a6ab5"/>
-            <polygon points="50,44 56,56 50,50 44,56" fill="#f5c800"/>
-            <rect x="16" y="44" width="16" height="28" rx="3" fill="#1a6ab5"/>
-            <rect x="68" y="44" width="16" height="28" rx="3" fill="#1a6ab5"/>
-            <rect x="30" y="78" width="16" height="22" rx="3" fill="#1a4090"/>
-            <rect x="54" y="78" width="16" height="22" rx="3" fill="#1a4090"/>
-          </svg>
-        </div>
-        <div class="product-info">
-          <div class="name">Superhero Statue</div>
-          <div class="price">$15.00</div>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <div class="product-img bg-dark" style="position:relative;">
-          <div class="badge-limited">LIMITED EDITION</div>
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="35" fill="#d4a020" stroke="#111" stroke-width="2"/>
-            <circle cx="50" cy="50" r="28" fill="none" stroke="#111" stroke-width="1.5"/>
-            <text x="50" y="45" font-family="Bangers" font-size="14" fill="#111" text-anchor="middle">PIN</text>
-            <text x="50" y="60" font-family="Bangers" font-size="14" fill="#111" text-anchor="middle">SET</text>
-          </svg>
-        </div>
-        <div class="product-info">
-          <div class="name">Limited Edition Pin</div>
-          <div class="price">$15.00</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Row 3 -->
-    <div class="product-grid">
-      <div class="product-card">
-        <div class="product-img bg-tan">
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <rect x="8" y="5" width="84" height="90" rx="4" fill="#e8d8b0" stroke="#666" stroke-width="2"/>
-            <text x="50" y="22" font-family="Bangers" font-size="10" fill="#c03020" text-anchor="middle">VINTAGE</text>
-            <rect x="12" y="26" width="76" height="60" rx="2" fill="#4a3020"/>
-            <text x="50" y="62" font-family="Bangers" font-size="18" fill="#f5c800" text-anchor="middle">CARG</text>
-          </svg>
-        </div>
-        <div class="product-info">
-          <div class="name">Vintage Carg Comic</div>
-          <div class="price">$12.99</div>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <div class="product-img" style="background:#1a3060;">
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <rect x="8" y="5" width="84" height="90" rx="4" fill="#e8d8b0" stroke="#666" stroke-width="2"/>
-            <text x="50" y="22" font-family="Bangers" font-size="10" fill="#c03020" text-anchor="middle">SUPERHERO</text>
-            <rect x="12" y="26" width="76" height="60" rx="2" fill="#1a3060"/>
-            <circle cx="50" cy="22" r="10" fill="#f0c890" style="transform:translateY(36px)"/>
-            <text x="50" y="68" font-family="Bangers" font-size="24" fill="#f5c800" text-anchor="middle">★</text>
-          </svg>
-        </div>
-        <div class="product-info">
-          <div class="name">Superhero Comic</div>
-          <div class="price">$15.90</div>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <div class="product-img bg-dark" style="position:relative;">
-          <div class="badge-limited">LIMITED EDITION</div>
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="35" cy="40" r="22" fill="#2060a0" stroke="#111" stroke-width="1.5"/>
-            <circle cx="65" cy="60" r="22" fill="#c03020" stroke="#111" stroke-width="1.5"/>
-            <text x="35" y="46" font-family="Bangers" font-size="14" fill="white" text-anchor="middle">PIN</text>
-            <text x="65" y="66" font-family="Bangers" font-size="14" fill="white" text-anchor="middle">SET</text>
-          </svg>
-        </div>
-        <div class="product-info">
-          <div class="name">Limited Edition Pin Set</div>
-          <div class="price">$15.00</div>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <div class="product-img bg-dark" style="position:relative;">
-          <div class="badge-limited">LIMITED EDITION</div>
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <rect x="8" y="5" width="84" height="90" rx="4" fill="#c0c0d8" stroke="#888" stroke-width="2"/>
-            <text x="50" y="22" font-family="Bangers" font-size="8" fill="#c03020" text-anchor="middle">LIMITED ED.</text>
-            <text x="50" y="56" font-family="Bangers" font-size="38" fill="#c03020" text-anchor="middle">X</text>
-          </svg>
-        </div>
-        <div class="product-info">
-          <div class="name">Limited Edition Pin</div>
-          <div class="price">$18.00</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <footer>footer &nbsp;|&nbsp; © 2024 Bumdee Comics &nbsp;|&nbsp; All Rights Reserved</footer>
-</div>
 
 <!-- ===== EVENTS PAGE ===== -->
 <div id="page-events" class="page">
@@ -791,7 +569,7 @@
 
     <div style="display:flex; justify-content:flex-start; margin-bottom:20px;">
       <div class="logo-badge" style="width:110px; height:110px;">
-        <img src="logo.png" alt="Bumdee Comics Logo" style="width:100%;height:100%;object-fit:contain;">
+        <img src="imgs/logo.png" alt="Bumdee Comics Logo" style="width:100%;height:100%;object-fit:contain;">
       </div>
     </div>
 
@@ -800,25 +578,19 @@
       <div>
         <div class="map-container">
           <div class="map-placeholder">
-            <!-- Road grid -->
             <div class="map-grid"></div>
-            <!-- Roads -->
             <div class="map-road-h" style="top:30%;"></div>
             <div class="map-road-h" style="top:55%;"></div>
             <div class="map-road-h" style="top:75%;"></div>
             <div class="map-road-v" style="left:25%;"></div>
             <div class="map-road-v" style="left:50%;"></div>
             <div class="map-road-v" style="left:72%;"></div>
-            <!-- Pin -->
             <div class="map-pin">📍</div>
-            <!-- Google Maps label -->
             <div style="position:absolute; top:8px; left:8px; background:white; padding:4px 8px; font-size:11px; font-family:'Oswald', sans-serif; border:1px solid #ccc; border-radius:2px;">Google Maps</div>
-            <!-- Zoom controls -->
             <div style="position:absolute; bottom:20px; right:10px; background:white; border:1px solid #ccc; border-radius:2px; overflow:hidden;">
               <div style="padding:4px 8px; font-size:16px; font-weight:bold; border-bottom:1px solid #ccc; cursor:pointer; text-align:center;">+</div>
               <div style="padding:4px 8px; font-size:16px; font-weight:bold; cursor:pointer; text-align:center;">−</div>
             </div>
-            <!-- Map attribution -->
             <div style="position:absolute; bottom:4px; left:4px; font-size:9px; color:#666;">Map data ©2024 Google &nbsp;|&nbsp; Terms of use</div>
           </div>
         </div>
@@ -858,15 +630,11 @@
 
 <script>
   function showPage(pageId, linkEl) {
-    // Hide all pages
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    // Show target
     document.getElementById('page-' + pageId).classList.add('active');
-    // Update nav links
     document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
     if (linkEl) linkEl.classList.add('active');
     window.scrollTo(0, 0);
-    return false;
   }
 </script>
 
