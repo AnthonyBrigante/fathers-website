@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bumdee Comics — Events</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Oswald:wght@400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --cream: #f5f0dc;
@@ -17,30 +18,10 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: sans-serif;
+      font-family: 'Lato', sans-serif;
       background: var(--cream);
       color: var(--dark);
       min-height: 100vh;
-    }
-
-    /* ===== LOGO ===== */
-    .logo-wrap {
-      display: flex;
-      align-items: center;
-      gap: 0;
-    }
-
-    .logo-badge {
-      position: relative;
-      width: 100px;
-      height: 100px;
-      flex-shrink: 0;
-      mix-blend-mode: multiply;
-    }
-
-    .logo-badge svg {
-      width: 100%;
-      height: 100%;
     }
 
     /* ===== NAV ===== */
@@ -51,6 +32,14 @@
       border-bottom: 3px solid var(--border);
       padding: 12px 20px;
       gap: 20px;
+    }
+
+    .logo-badge {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      flex-shrink: 0;
+      mix-blend-mode: multiply;
     }
 
     .nav-links {
@@ -64,74 +53,227 @@
     }
 
     .nav-links a {
-      font-family: sans-serif;
+      font-family: 'Oswald', sans-serif;
       font-size: 13px;
       font-weight: 600;
       letter-spacing: 1px;
       text-decoration: none;
       color: var(--dark);
       text-transform: uppercase;
-      cursor: pointer;
       transition: color 0.2s;
     }
 
-    .nav-links a:hover, .nav-links a.active {
+    .nav-links a:hover,
+    .nav-links a.active {
       color: var(--red);
       text-decoration: underline;
     }
 
-    /* ===== EVENTS PAGE ===== */
+    /* ===== PAGE HEADER ===== */
+    .events-header {
+      background: var(--red);
+      padding: 24px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 3px solid var(--border);
+    }
+
+    .events-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent 0,
+        transparent 10px,
+        rgba(0,0,0,0.06) 10px,
+        rgba(0,0,0,0.06) 20px
+      );
+    }
+
+    .events-header h1 {
+      font-family: 'Bangers', cursive;
+      font-size: 60px;
+      letter-spacing: 4px;
+      color: var(--yellow);
+      -webkit-text-stroke: 2px var(--dark);
+      text-shadow: 3px 3px 0 var(--dark);
+      line-height: 1;
+      position: relative;
+      z-index: 1;
+    }
+
+    .events-header .sub {
+      font-family: 'Oswald', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      color: var(--cream);
+      text-transform: uppercase;
+      margin-top: 4px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== CONTENT ===== */
     .events-content {
-      max-width: 900px;
+      max-width: 960px;
       margin: 0 auto;
-      padding: 30px 20px;
+      padding: 36px 20px;
     }
 
     .events-layout {
       display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 30px;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 36px;
+      align-items: start;
+    }
+
+    /* ===== MAP COLUMN ===== */
+    .map-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .map-label {
+      background: var(--dark);
+      color: var(--cream);
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      border: 3px solid var(--border);
+      border-bottom: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .map-label span {
+      font-size: 14px;
     }
 
     .map-container {
       border: 3px solid var(--border);
-      background: #d4e8c8;
-      height: 280px;
-      position: relative;
       overflow: hidden;
-      border-radius: 3px;
+      width: 100%;
+      height: 320px;
     }
 
-    .map-placeholder {
+    .map-container iframe {
       width: 100%;
       height: 100%;
-      position: relative;
-      background: #e8edd8;
+      border: none;
+      display: block;
     }
 
-    .map-pin {
-      position: absolute;
-      top: 50%;
-      left: 55%;
-      transform: translate(-50%, -50%);
-      color: var(--red);
-      font-size: 28px;
+    .map-address {
+      background: white;
+      border: 3px solid var(--border);
+      border-top: none;
+      padding: 10px 14px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
+    .map-address a {
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .map-address a:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== EVENTS LIST COLUMN ===== */
     .events-shows h2 {
-      font-family: sans-serif;
-      font-size: 28px;
+      font-family: 'Bangers', cursive;
+      font-size: 30px;
       letter-spacing: 2px;
       text-transform: uppercase;
       border-bottom: 3px solid var(--border);
       padding-bottom: 8px;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
 
+    /* Featured event card */
+    .event-card-featured {
+      background: var(--yellow);
+      border: 3px solid var(--border);
+      border-radius: 3px;
+      padding: 16px;
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .event-card-featured::before {
+      content: 'UPCOMING';
+      position: absolute;
+      top: 10px;
+      right: -22px;
+      background: var(--red);
+      color: white;
+      font-family: 'Bangers', cursive;
+      font-size: 11px;
+      letter-spacing: 1px;
+      padding: 3px 30px;
+      transform: rotate(45deg);
+      transform-origin: center;
+      border-top: 1px solid var(--dark);
+      border-bottom: 1px solid var(--dark);
+    }
+
+    .event-card-featured .event-name {
+      font-family: 'Bangers', cursive;
+      font-size: 26px;
+      letter-spacing: 1px;
+      color: var(--dark);
+      margin-bottom: 10px;
+    }
+
+    .event-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .event-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    .event-meta-icon {
+      width: 28px;
+      height: 28px;
+      background: var(--dark);
+      color: var(--yellow);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    /* Regular event items */
     .event-item {
       display: flex;
       gap: 14px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       align-items: flex-start;
     }
 
@@ -146,26 +288,29 @@
       align-items: center;
       justify-content: center;
       color: white;
-      font-size: 22px;
+      font-size: 20px;
     }
 
     .event-desc {
-      font-size: 12px;
+      font-size: 13px;
       line-height: 1.6;
       color: #444;
+      padding-top: 2px;
     }
 
-    .event-date {
-      font-family: sans-serif;
-      font-size: 15px;
-      font-weight: 700;
+    .event-desc strong {
+      font-family: 'Oswald', sans-serif;
+      font-size: 14px;
       color: var(--dark);
-      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
-    .event-date span {
-      display: block;
-      margin-bottom: 4px;
+    /* Divider */
+    .section-divider {
+      border: none;
+      border-top: 3px solid var(--border);
+      margin: 20px 0;
     }
 
     /* ===== FOOTER ===== */
@@ -174,7 +319,7 @@
       color: var(--cream);
       text-align: center;
       padding: 14px;
-      font-family: sans-serif;
+      font-family: 'Oswald', sans-serif;
       font-size: 12px;
       letter-spacing: 1px;
       text-transform: uppercase;
@@ -182,39 +327,10 @@
       border-top: 4px solid var(--yellow);
     }
 
-    /* Map grid lines */
-    .map-grid {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(0,0,0,0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,0,0,0.08) 1px, transparent 1px);
-      background-size: 30px 30px;
-    }
-
-    .map-road-h {
-      position: absolute;
-      left: 0; right: 0;
-      height: 8px;
-      background: #c8c0a8;
-    }
-    .map-road-v {
-      position: absolute;
-      top: 0; bottom: 0;
-      width: 8px;
-      background: #c8c0a8;
-    }
-
-    /* Divider */
-    .section-divider {
-      border: none;
-      border-top: 3px solid var(--border);
-      margin: 28px 0;
-    }
-
-    /* Responsive tweaks */
+    /* ===== RESPONSIVE ===== */
     @media (max-width: 700px) {
       .events-layout { grid-template-columns: 1fr; }
+      .events-header h1 { font-size: 42px; }
     }
   </style>
 </head>
@@ -222,10 +338,8 @@
 
 <!-- ===== NAV ===== -->
 <nav>
-  <div class="logo-wrap">
-    <div class="logo-badge">
-      <img src="logo.png" alt="logo" style="width:100%; height:100%; object-fit:contain;">
-    </div>
+  <div class="logo-badge">
+    <img src="imgs/logo.png" alt="Bumdee Comics Logo" style="width:100%; height:100%; object-fit:contain;">
   </div>
   <div class="nav-links">
     <a href="index.html">Home</a>
@@ -234,62 +348,74 @@
   </div>
 </nav>
 
-<!-- ===== EVENTS PAGE ===== -->
+<!-- ===== HEADER ===== -->
+<div class="events-header">
+  <h1>EVENTS</h1>
+  <div class="sub">Find Us at a Show Near You</div>
+</div>
+
+<!-- ===== CONTENT ===== -->
 <div class="events-content">
   <div class="events-layout">
-    <!-- Map -->
-    <div>
+
+    <!-- LEFT: Map -->
+    <div class="map-wrap">
+      <div class="map-label">
+        <span>📍</span> Show Location
+      </div>
       <div class="map-container">
-        <div class="map-placeholder">
-          <!-- Road grid -->
-          <div class="map-grid"></div>
-          <!-- Roads -->
-          <div class="map-road-h" style="top:30%;"></div>
-          <div class="map-road-h" style="top:55%;"></div>
-          <div class="map-road-h" style="top:75%;"></div>
-          <div class="map-road-v" style="left:25%;"></div>
-          <div class="map-road-v" style="left:50%;"></div>
-          <div class="map-road-v" style="left:72%;"></div>
-          <!-- Pin -->
-          <div class="map-pin">📍</div>
-          <!-- Google Maps label -->
-          <div style="position:absolute; top:8px; left:8px; background:white; padding:4px 8px; font-size:11px; font-family:'Oswald', sans-serif; border:1px solid #ccc; border-radius:2px;">Google Maps</div>
-          <!-- Zoom controls -->
-          <div style="position:absolute; bottom:20px; right:10px; background:white; border:1px solid #ccc; border-radius:2px; overflow:hidden;">
-            <div style="padding:4px 8px; font-size:16px; font-weight:bold; border-bottom:1px solid #ccc; cursor:pointer; text-align:center;">+</div>
-            <div style="padding:4px 8px; font-size:16px; font-weight:bold; cursor:pointer; text-align:center;">−</div>
-          </div>
-          <!-- Map attribution -->
-          <div style="position:absolute; bottom:4px; left:4px; font-size:9px; color:#666;">Map data ©2024 Google &nbsp;|&nbsp; Terms of use</div>
-        </div>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3053.1049883288183!2d-74.51617122400609!3d40.07307017149688!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c168a7876fa1a9%3A0x48dd2b3e07dd1339!2s107%20Lakewood%20Rd%2C%20New%20Egypt%2C%20NJ%2008533!5e0!3m2!1sen!2sus!4v1776360058823!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <div class="map-address">
+        📍 &nbsp;
+        <a href="https://maps.google.com/?q=107+Lakewood+Rd,+New+Egypt,+NJ+08533" target="_blank">
+          107 Lakewood Rd, New Egypt, NJ 08533
+        </a>
+        — Open in Google Maps
       </div>
     </div>
 
-    <!-- Events list -->
+    <!-- RIGHT: Event details -->
     <div class="events-shows">
       <h2>Visit Us at Upcoming Shows</h2>
 
-      <div class="event-item">
-        <div class="event-icon">📅</div>
-        <div>
-          <div class="event-desc"><strong>Dates:</strong></div>
-          <div class="event-desc">Detailed upcoming storytelling events between the comic-con and calendar. Fictional examples shown in image.</div>
-        </div>
-      </div>
-
-      <div class="event-item">
-        <div class="event-icon">📅</div>
-        <div>
-          <div class="event-desc">Detailed comical calendars — the events are shown at local organizations to help promote and describe collectibles.</div>
+      <!-- Featured event -->
+      <div class="event-card-featured">
+        <div class="event-name">New Egypt Comic Show</div>
+        <div class="event-meta">
+          <div class="event-meta-row">
+            <div class="event-meta-icon">📅</div>
+            Sunday, April 27, 2026
+          </div>
+          <div class="event-meta-row">
+            <div class="event-meta-icon">📍</div>
+            107 Lakewood Rd, New Egypt, NJ
+          </div>
+          <div class="event-meta-row">
+            <div class="event-meta-icon">🕐</div>
+            Doors Open — 10 AM - 4PM
+          </div>
         </div>
       </div>
 
       <hr class="section-divider">
 
-      <div class="event-date">
-        <span>Oct 12 — Comic-Con</span>
-        <span>Nov 5 — Toy Fair</span>
+      <div class="event-item">
+        <div class="event-icon">🗺️</div>
+        <div>
+          <div class="event-desc"><strong>What to Expect</strong></div>
+          <div class="event-desc">Come find us at our table — we'll have vintage comics, unique collectibles, Pokémon cards, pins, and rare finds. A collection of all my dads nerdiest items</div>
+        </div>
       </div>
+
+      <div class="event-item">
+        <div class="event-icon">📦</div>
+        <div>
+          <div class="event-desc"><strong>Stock</strong></div>
+          <div class="event-desc">Limited edition items available exclusively at shows. Come early for the best selection.</div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
